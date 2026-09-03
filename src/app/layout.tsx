@@ -9,6 +9,7 @@ import { dictionaries, type Locale } from "@/i18n/dictionaries";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ToastProvider } from "@/components/ui/ToastProvider";
+import { WelcomeSplash } from "@/components/layout/WelcomeSplash";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const rajdhani = Rajdhani({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-rajdhani" });
