@@ -56,6 +56,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} className={`${outfit.variable} ${rajdhani.variable} ${cairo.variable}`}>
       <body className="antialiased">
         <ToastProvider>
+          <WelcomeSplash locale={locale} />
           {settings.announcementEnabled && (
             <div className="border-b border-white/10 bg-white/5 py-2 text-center text-xs tracking-wide text-zinc-300">
               {locale === "ar" ? settings.announcementAr : settings.announcement}
