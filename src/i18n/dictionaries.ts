@@ -157,4 +157,5 @@ export const dictionaries = {
   },
 } as const;
 
-export type Dictionary = (typeof dictionaries)["en"];
+type DeepString<T> = T extends string ? string : { [K in keyof T]: DeepString<T[K]> };
+export type Dictionary = DeepString<(typeof dictionaries)["en"]>;

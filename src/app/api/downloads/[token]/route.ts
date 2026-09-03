@@ -15,12 +15,13 @@ export async function GET(_req: Request, { params }: { params: Promise<{ token: 
   if (!dl.fileId) return NextResponse.json({ error: "File not attached yet" }, { status: 404 });
   const file = await prisma.productFile.findUnique({ where: { id: dl.fileId } });
   if (!file) return NextResponse.json({ error: "Missing file" }, { status: 404 });
-  const abs = path.resolve(process.env.STORAGE_DIR || "./storage", file.storageKey);
-  const root = path.resolve(process.env.STORAGE_DIR || "./storage");
+  const storageDir = path.join(process.cwd(), "storage");
+  const abs = path.join(storageDir, file.storageKey);
+  const root = storageDir;
   if (!abs.startsWith(root)) return NextResponse.json({ error: "Invalid path" }, { status: 400 });
-  if (!fs.existsSync(abs)) return NextResponse.json({ error: "File missing on disk" }, { status: 404 });
+  if (!fs.existsSync(/* turbopackIgnore: true */ abs)) return NextResponse.json({ error: "File missing on disk" }, { status: 404 });
   await prisma.download.update({ where: { id: dl.id }, data: { remaining: { decrement: 1 }, lastDownload: new Date() } });
-  const buf = fs.readFileSync(abs);
+  const buf = fs.readFileSync(/* turbopackIgnore: true */ abs);
   return new NextResponse(buf, {
     headers: {
       "Content-Type": file.mimeType || "application/octet-stream",

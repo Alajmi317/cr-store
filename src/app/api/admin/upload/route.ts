@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ url });
   }
 
-  const storageRoot = path.resolve(process.env.STORAGE_DIR || "./storage");
+  const storageRoot = path.join(process.cwd(), "storage");
   const dir = path.join(storageRoot, "products", productId);
   fs.mkdirSync(dir, { recursive: true });
   const keyName = `${randomBytes(8).toString("hex")}${path.extname(file.name) || ".bin"}`;
