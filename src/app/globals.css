@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #050506;
+  --bg-2: #0b0c10;
+  --card: rgba(16, 17, 22, 0.72);
+  --line: rgba(210, 214, 224, 0.12);
+  --text: #eef0f4;
+  --muted: #9aa3b2;
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-outfit);
+  --font-display: var(--font-rajdhani);
+  --font-ar: var(--font-cairo);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  background: #050506;
+  color: #eef0f4;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-outfit), var(--font-cairo), system-ui, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(180, 190, 210, 0.08), transparent 55%),
+    radial-gradient(800px 400px at 100% 0%, rgba(90, 100, 130, 0.08), transparent 40%),
+    #050506;
+}
+
+html[dir="rtl"] body { font-family: var(--font-cairo), var(--font-outfit), system-ui, sans-serif; }
+
+h1, h2, h3, .display {
+  font-family: var(--font-rajdhani), var(--font-cairo), sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.glass {
+  background: rgba(16, 17, 22, 0.72);
+  border: 1px solid rgba(210, 214, 224, 0.12);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #eceff4, #b7becc);
+  color: #0b0c10;
+  font-weight: 700;
+  border: 0;
+  box-shadow: 0 8px 24px rgba(200, 210, 230, 0.12);
+}
+.btn-primary:hover { filter: brightness(1.06); }
+
+.btn-ghost {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(210, 214, 224, 0.12);
+  color: #eef0f4;
+}
+
+input, select, textarea {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(210, 214, 224, 0.12);
+  color: #eef0f4;
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+  outline: none;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(215,219,230,0.45);
+  box-shadow: 0 0 0 3px rgba(215,219,230,0.08);
+}
+
+.container-cr {
+  width: min(1200px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise .6s ease both; }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #2a2d36; border-radius: 99px; }
